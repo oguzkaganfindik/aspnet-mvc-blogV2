@@ -1,5 +1,12 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+    ViewData["Title"] = "Category";
 }
+
+<partial name="~/Views/Shared/CategoryShared/Header.cshtml" />
+
+<partial name="~/Views/Blog/Search.cshtml" />
+
+<partial name="~/Views/Shared/CategoryShared/Articles.cshtml" />
+
+<partial name="~/Views/Shared/CategoryShared/Footer.cshtml" />
