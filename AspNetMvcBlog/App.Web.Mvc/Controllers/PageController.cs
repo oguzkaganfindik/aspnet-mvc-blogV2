@@ -2,7 +2,7 @@
 
 namespace App.Web.Mvc.Controllers
 {
-    public class Page : Controller
+    public class PageController : Controller
     {
         public IActionResult Detail(int id)
         {
