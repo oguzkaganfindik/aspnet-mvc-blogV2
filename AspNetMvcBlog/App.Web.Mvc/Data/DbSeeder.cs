@@ -28,7 +28,6 @@ namespace App.Web.Mvc.Data
 					Id = 1,
 					UserName = "Teoman",
 					UserSurname = "Yakupoğlu",
-					UserNick = "Teo",
 					UserEmail = "Teo@xyz.com",
 					UserPassword = "123456"
 				},
@@ -37,7 +36,6 @@ namespace App.Web.Mvc.Data
 					Id = 2,
 					UserName = "Sebnem",
 					UserSurname = "Ferah",
-					UserNick = "Sebo",
 					UserEmail = "sebnem@xyz.com",
 					UserPassword = "123456"
 				}

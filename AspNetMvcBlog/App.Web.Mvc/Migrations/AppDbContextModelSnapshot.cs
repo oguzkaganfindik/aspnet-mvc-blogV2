@@ -217,11 +217,6 @@ namespace App.Web.Mvc.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("UserNick")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("UserPassword")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -241,7 +236,6 @@ namespace App.Web.Mvc.Migrations
                             Id = 1,
                             UserEmail = "Teo@xyz.com",
                             UserName = "Teoman",
-                            UserNick = "Teo",
                             UserPassword = "123456",
                             UserSurname = "Yakupoğlu"
                         },
@@ -250,7 +244,6 @@ namespace App.Web.Mvc.Migrations
                             Id = 2,
                             UserEmail = "sebnem@xyz.com",
                             UserName = "Sebnem",
-                            UserNick = "Sebo",
                             UserPassword = "123456",
                             UserSurname = "Ferah"
                         });

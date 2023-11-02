@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Web.Mvc.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231102123240_Gorev10Migration")]
-    partial class Gorev10Migration
+    [Migration("20231102191530_First")]
+    partial class First
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -220,11 +220,6 @@ namespace App.Web.Mvc.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("UserNick")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("UserPassword")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -244,7 +239,6 @@ namespace App.Web.Mvc.Migrations
                             Id = 1,
                             UserEmail = "Teo@xyz.com",
                             UserName = "Teoman",
-                            UserNick = "Teo",
                             UserPassword = "123456",
                             UserSurname = "Yakupoğlu"
                         },
@@ -253,7 +247,6 @@ namespace App.Web.Mvc.Migrations
                             Id = 2,
                             UserEmail = "sebnem@xyz.com",
                             UserName = "Sebnem",
-                            UserNick = "Sebo",
                             UserPassword = "123456",
                             UserSurname = "Ferah"
                         });
