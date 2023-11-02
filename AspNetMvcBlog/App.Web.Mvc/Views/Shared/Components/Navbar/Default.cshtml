@@ -1,4 +1,20 @@
-﻿
+﻿@model App.Web.Mvc.Models.NavbarViewModel
+@using System.Text.Json;
+@using App.Web.Mvc.Data.Entity;
+@inject IHttpContextAccessor _currentPageInfo
+@{
+  var isLoggedIn = _currentPageInfo.HttpContext.Session.GetInt32("isLoggedIn");
+  var sessionUser = _currentPageInfo.HttpContext.Session.Get("user");
+  User loggedInUser = null;
+  if (sessionUser != null)
+  {
+
+    loggedInUser = JsonSerializer.Deserialize<User>(sessionUser);
+  }
+}
+
+
+
 <header class="header-top bg-grey justify-content-center">
     <div class="container">
         <div class="row align-items-center">
@@ -81,22 +97,40 @@
                     </div>
                 </nav>
             </div>
+
             <div class="col-lg-2 col-md-4 col-6">
                 <div class="header-socials-2 text-right d-none d-lg-block">
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="ti-facebook"></i></a></li>
                         <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="ti-twitter"></i></a></li>
                         <li class="list-inline-item"><a href="https://www.linkedin.com/" target="_blank"><i class="ti-linkedin"></i></a></li>
-                        <li class="list-inline-item"><a href="https://tr.pinterest.com/" target="_blank"><i class="ti-pinterest"></i></a></li
-                        <li class="list-inline-item">
-                            <a asp-controller="Auth" asp-action="Login" class="btn btn-grey me-2 rounded">Login</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a asp-controller="Auth" asp-action="Register" class="btn btn-primary me-2 rounded">Sign In</a>
-                        </li>
+                        <li class="list-inline-item"><a href="https://tr.pinterest.com/" target="_blank"><i class="ti-pinterest"></i></a></li>
+
+                        @if (isLoggedIn == 1)
+                        {
+                            <li class ="list-inline-item"><a asp-area="" asp-controller="Auth" asp-action="Logout" class="btn btn-secondary me-2 rounded">Logout</a></li>
+                            <li class="list-inline-item" style="color: red;">@loggedInUser.UserName @loggedInUser.UserSurname</li>
+
+                        }
+                        else
+                        {
+                            <li class="list-inline-item">
+                                <a asp-controller="Auth" asp-action="Login" class="btn btn-secondary me-2 rounded">Login</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a asp-controller="Auth" asp-action="Register" class="btn btn-secondary me-2 rounded">Sign In</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
-        </div>
+
+        </div>   
     </div>
 </header>
+
+
+            
+
+
+         

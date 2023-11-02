@@ -7,7 +7,7 @@
 namespace App.Web.Mvc.Migrations
 {
     /// <inheritdoc />
-    public partial class CodeFirstEntityModels : Migration
+    public partial class First : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -46,7 +46,6 @@ namespace App.Web.Mvc.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UserSurname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UserNick = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -106,7 +105,9 @@ namespace App.Web.Mvc.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PostId = table.Column<int>(type: "int", nullable: false)
+                    PostId = table.Column<int>(type: "int", nullable: false),
+                    PageTitle = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    PageContext = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -170,11 +171,11 @@ namespace App.Web.Mvc.Migrations
 
             migrationBuilder.InsertData(
                 table: "User",
-                columns: new[] { "Id", "UserEmail", "UserName", "UserNick", "UserPassword", "UserSurname" },
+                columns: new[] { "Id", "UserEmail", "UserName", "UserPassword", "UserSurname" },
                 values: new object[,]
                 {
-                    { 1, "oguzkagan@xyz.com", "Oğuzkağan", "Ogz", "123456", "Fındık" },
-                    { 2, "sebnem@xyz.com", "Sebnem", "Sebo", "123456", "Ferah" }
+                    { 1, "Teo@xyz.com", "Teoman", "123456", "Yakupoğlu" },
+                    { 2, "sebnem@xyz.com", "Sebnem", "123456", "Ferah" }
                 });
 
             migrationBuilder.InsertData(
