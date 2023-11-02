@@ -1,11 +1,9 @@
 ﻿@{
-    Layout = "~/Views/Shared/Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Detail";
 }
 
-<partial name="~/Views/Shared/CategoryShared/Header.cshtml" />
-
-<partial name="~/Views/Blog/Search.cshtml" />
+@await Component.InvokeAsync("Navbar")
 
 <div class="breadcrumb-wrapper">
     <div class="container">
@@ -86,4 +84,4 @@
 
 
 
-<partial name="~/Views/Shared/CategoryShared/Footer.cshtml" />
+@await Component.InvokeAsync("Footer")

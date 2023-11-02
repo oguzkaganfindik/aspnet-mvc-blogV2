@@ -1,18 +1,17 @@
-﻿@{
-    Layout = "Layout";
-}
+﻿@await Component.InvokeAsync("Navbar")
 
 <div class="breadcrumb-wrapper">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="text-center">
-                    <h2 class="lg-title">Travel</h2>
+                    <h2 class="lg-title">Weekends</h2>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <section class="section-padding">
     <div class="container">
         <div class="row">
@@ -23,8 +22,8 @@
                             <div class="post-thumb mb-4">
                                 <img src="~/dist/images/news/f1.jpg" alt="" class="img-fluid w-100">
                             </div>
-                            <span class="cat-name text-color font-extra text-sm text-uppercase letter-spacing-1">Travel</span>
-                            <h3 class="post-title mt-1"><a href="BlogDetail">The best soft chocolate chip cookies</a></h3>
+                            <span class="cat-name text-color font-extra text-sm text-uppercase letter-spacing-1">Weekends</span>
+                            <h3 class="post-title mt-1"><a asp-controller="Blog" asp-action="Detail">The best soft chocolate chip cookies</a></h3>
 
                             <span class=" text-muted  text-capitalize">September 15, 2019</span>
 
@@ -35,8 +34,8 @@
                             <div class="post-thumb mb-4">
                                 <img src="~/dist/images/news/f2.jpg" alt="" class="img-fluid w-100">
                             </div>
-                            <span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-                            <h3 class="post-title mt-1"><a href="BlogDetail">How to Make the Best Baked Oatmeal</a></h3>
+                            <span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Weekends</span>
+                            <h3 class="post-title mt-1"><a asp-controller="Blog" asp-action="Detail">How to Make the Best Baked Oatmeal</a></h3>
 
                             <span class=" text-muted  text-capitalize">August 05, 2019</span>
 
@@ -47,8 +46,8 @@
                             <div class="post-thumb mb-4">
                                 <img src="~/dist/images/news/f8.jpg" alt="" class="img-fluid w-100">
                             </div>
-                            <span class=" cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-                            <h3 class="post-title mt-1"><a href="BlogDetail">5 ingredient cilantro vinaigrette</a></h3>
+                            <span class=" cat-name text-color font-sm font-extra text-uppercase letter-spacing">Weekends</span>
+                            <h3 class="post-title mt-1"><a asp-controller="Blog" asp-action="Detail">5 ingredient cilantro vinaigrette</a></h3>
 
                             <span class=" text-muted  text-capitalize">April 22, 2019</span>
 
@@ -59,8 +58,8 @@
                             <div class="post-thumb mb-4">
                                 <img src="~/dist/images/news/f3.jpg" alt="" class="img-fluid w-100">
                             </div>
-                            <span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-                            <h3 class="post-title mt-1"><a href="BlogDetail">The best soft chocolate chip cookies</a></h3>
+                            <span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Weekends</span>
+                            <h3 class="post-title mt-1"><a asp-controller="Blog" asp-action="Detail">The best soft chocolate chip cookies</a></h3>
 
                             <span class=" text-muted  text-capitalize">September 10, 2019</span>
 
@@ -71,11 +70,9 @@
                             <div class="post-thumb mb-4">
                                 <img src="~/dist/images/news/f4.jpg" alt="" class="img-fluid w-100">
                             </div>
-                            <span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-                            <h3 class="post-title mt-1"><a href="BlogDetail">How to Make the Best Baked Oatmeal</a></h3>
-
+                            <span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Weekends</span>
+                            <h3 class="post-title mt-1"><a asp-controller="Blog" asp-action="Detail">How to Make the Best Baked Oatmeal</a></h3>
                             <span class=" text-muted  text-capitalize">January 04, 2019</span>
-
                         </article>
                     </div>
                     <div class="col-lg-6 col-md-6">
@@ -83,11 +80,9 @@
                             <div class="post-thumb mb-4">
                                 <img src="~/dist/images/news/f5.jpg" alt="" class="img-fluid w-100">
                             </div>
-                            <span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-                            <h3 class="post-title mt-1"><a href="BlogDetail">5 ingredient cilantro vinaigrette</a></h3>
-
+                            <span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Weekends</span>
+                            <h3 class="post-title mt-1"><a asp-controller="Blog" asp-action="Detail">5 ingredient cilantro vinaigrette</a></h3>
                             <span class=" text-muted  text-capitalize">March 17, 2019</span>
-
                         </article>
                     </div>
                     <div class="col-lg-6 col-md-6">
@@ -95,8 +90,8 @@
                             <div class="post-thumb mb-4">
                                 <img src="~/dist/images/news/f6.jpg" alt="" class="img-fluid w-100">
                             </div>
-                            <span class=" cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-                            <h3 class="post-title mt-1"><a href="BlogDetail">5 ingredient cilantro vinaigrette</a></h3>
+                            <span class=" cat-name text-color font-sm font-extra text-uppercase letter-spacing">Weekends</span>
+                            <h3 class="post-title mt-1"><a asp-controller="Blog" asp-action="Detail">5 ingredient cilantro vinaigrette</a></h3>
 
                             <span class=" text-muted  text-capitalize">July 28, 2019</span>
 
@@ -107,8 +102,8 @@
                             <div class="post-thumb mb-4">
                                 <img src="~/dist/images/news/f7.jpg" alt="" class="img-fluid w-100">
                             </div>
-                            <span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-                            <h3 class="post-title mt-1"><a href="BlogDetail">The best soft chocolate chip cookies</a></h3>
+                            <span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Weekends</span>
+                            <h3 class="post-title mt-1"><a asp-controller="Blog" asp-action="Detail">The best soft chocolate chip cookies</a></h3>
 
                             <span class=" text-muted  text-capitalize">October 02, 2019</span>
 
@@ -119,8 +114,8 @@
                             <div class="post-thumb mb-4">
                                 <img src="~/dist/images/news/f8.jpg" alt="" class="img-fluid w-100">
                             </div>
-                            <span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-                            <h3 class="post-title mt-1"><a href="BlogDetail">How to Make the Best Baked Oatmeal</a></h3>
+                            <span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Weekends</span>
+                            <h3 class="post-title mt-1"><a asp-controller="Blog" asp-action="Detail">How to Make the Best Baked Oatmeal</a></h3>
 
                             <span class=" text-muted  text-capitalize">September 15, 2019</span>
 
@@ -145,19 +140,19 @@
                                 <img src="~/dist/images/author.jpg" alt="" class="img-fluid">
                             </div>
                             <h4 class="mb-0 mt-4">Liam Mason</h4>
-                            <p>Travel Blogger</p>
+                            <p>Weekends Blogger</p>
                             <p>I'm Liam, last year I decided to quit my job and travel the world. You can follow my journey on this blog!</p>
-                            <img src="~/dist/images/liammason.png" alt="" class="img-fluid">
+                            <img src="Img/liammason.png" alt="" class="img-fluid">
                         </div>
 
                         <div class="sidebar-widget follow mb-5 text-center">
                             <h4 class="text-center widget-title">Follow Me</h4>
                             <div class="follow-socials">
-                                <a href="#"><i class="ti-facebook"></i></a>
-                                <a href="#"><i class="ti-twitter"></i></a>
-                                <a href="#"><i class="ti-instagram"></i></a>
-                                <a href="#"><i class="ti-youtube"></i></a>
-                                <a href="#"><i class="ti-pinterest"></i></a>
+                                <a href="https://www.facebook.com/" target="_blank"><i class="ti-facebook"></i></a>
+                                <a href="https://twitter.com/" target="_blank"><i class="ti-twitter"></i></a>
+                                <a href="https://www.instagram.com/" target="_blank"><i class="ti-instagram"></i></a>
+                                <a href="https://www.youtube.com/" target="_blank"><i class="ti-youtube"></i></a>
+                                <a href="https://tr.pinterest.com/" target="_blank"><i class="ti-pinterest"></i></a>
                             </div>
                         </div>
 
@@ -165,26 +160,26 @@
                             <h4 class="text-center widget-title">Trending Posts</h4>
 
                             <div class="sidebar-post-item-big">
-                                <a href="BlogDetail"><img src="~/dist/images/news/img-1.jpg" alt="" class="img-fluid"></a>
+                                <a asp-controller="Blog" asp-action="Detail"><img src="~/dist/images/news/img-1.jpg" alt="" class="img-fluid"></a>
                                 <div class="mt-3 media-body">
                                     <span class="text-muted letter-spacing text-uppercase font-sm">September 10, 2019</span>
-                                    <h4><a href="BlogDetail">Meeting With Clarissa, Founder Of Purple Conversation App</a></h4>
+                                    <h4><a asp-controller="Blog" asp-action="Detail">Meeting With Clarissa, Founder Of Purple Conversation App</a></h4>
                                 </div>
                             </div>
 
                             <div class="media border-bottom py-3 sidebar-post-item">
-                                <a href="#"><img class="mr-4" src="~/dist/images/news/thumb-1.jpg" alt=""></a>
+                                <a href="#"><img class="mr-4" src="Img/news/thumb-1.jpg" alt=""></a>
                                 <div class="media-body">
                                     <span class="text-muted letter-spacing text-uppercase font-sm">September 10, 2019</span>
-                                    <h4><a href="BlogDetail">Thoughtful living in los Angeles</a></h4>
+                                    <h4><a asp-controller="Blog" asp-action="Detail">Thoughtful living in los Angeles</a></h4>
                                 </div>
                             </div>
 
                             <div class="media py-3 sidebar-post-item">
-                                <a href="#"><img class="mr-4" src="~/dist/images/news/thumb-2.jpg" alt=""></a>
+                                <a href="#"><img class="mr-4" src="Img/news/thumb-2.jpg" alt=""></a>
                                 <div class="media-body">
                                     <span class="text-muted letter-spacing text-uppercase font-sm">September 10, 2019</span>
-                                    <h4><a href="BlogDetail">Vivamus molestie gravida turpis.</a></h4>
+                                    <h4><a asp-controller="Blog" asp-action="Detail">Vivamus molestie gravida turpis.</a></h4>
                                 </div>
                             </div>
                         </div>
@@ -228,3 +223,4 @@
         </div>
     </div>
 </section>
+@await Component.InvokeAsync("Footer")

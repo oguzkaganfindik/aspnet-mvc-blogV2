@@ -1,8 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+
+    ViewData["Title"] = "Anasayfa";
 }
 
+@await Component.InvokeAsync("Navbar")
 
-<partial name="_Slider" />
+@await Component.InvokeAsync("Slider");
 
-<partial name="_Articles" />
+@await Component.InvokeAsync("PostItem");
+
+@await Component.InvokeAsync("Footer")

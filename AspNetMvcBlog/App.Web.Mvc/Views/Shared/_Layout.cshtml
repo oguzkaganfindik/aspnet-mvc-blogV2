@@ -24,16 +24,18 @@
     <link rel="stylesheet" href="~/dist/plugins/magnific-popup/magnific-popup.css">
     <!-- manin stylesheet -->
     <link rel="stylesheet" href="~/dist/css/style.css">
-
-</head>
+    </head>
 <body>
 
-    <partial name="_Header" />
 
 
-    @RenderBody()
+    <div class="container-flex">
+        <main role="main" class="pb-0">
+            @RenderBody()
+        </main>
+    </div>
 
-    <partial name="_Footer" />
+ 
 
     <!-- THEME JAVASCRIPT FILES
     ================================================== -->
