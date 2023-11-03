@@ -1,54 +1,47 @@
 ﻿using App.Business.Services.Abstract;
 using App.Persistence.Data;
 using App.Persistence.Data.Entity;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace App.Business.Services.Concrete
+namespace App.Business.Services
 {
-    public class PageService : IPageService
-    {
-        private readonly AppDbContext _context;
+	public class PageService : IPageService
+	{
+		private readonly AppDbContext _db;
 
-        public PageService(AppDbContext dbContext)
-        {
-            _context = dbContext;
-        }
+		public PageService(AppDbContext db)
+		{
+			_db = db;
 
-        public async Task DeleteByIdAsync(int id)
-        {
-            Page entityToDelete = await _context.Set<Page>().FindAsync(id);
-            if (entityToDelete != null)
-            {
-                _context.Set<Page>().Remove(entityToDelete);
-                await _context.SaveChangesAsync();
-            }
-        }
+		}
+		public void DeleteById(int id)
+		{
+			var page = _db.Page.Find(id);
+			if (page != null) _db.Page.Remove(page);
+		}
 
-        public async Task<IEnumerable<Page>> GetAllAsync()
-        {
-            return await _context.Set<Page>().ToListAsync();
-        }
+		public IEnumerable<Page> GetAll()
+		{
+			return _db.Page.Select(e => e);
+		}
 
-        public async Task<Page> GetByIdAsync(int id)
-        {
-            return await _context.Set<Page>().FindAsync(id);
-        }
+		public Page GetById(int id)
+		{
+			return _db.Page.Find(id);
+		}
 
-        public async Task InsertAsync(Page page)
-        {
-            await _context.Set<Page>().AddAsync(page);
-            await _context.SaveChangesAsync();
-        }
+		public void Insert(Page entity)
+		{
+			_db.Page.Add(entity);
+		}
 
-        public async Task UpdateAsync(Page page)
-        {
-            _context.Update(page);
-            await _context.SaveChangesAsync();
-        }
-    }
+		public void SaveChanges()
+		{
+			_db.SaveChanges();
+		}
+
+		public void Update(Page entity)
+		{
+			if (_db.Page.Contains(entity)) _db.Page.Update(entity);
+		}
+	}
 }

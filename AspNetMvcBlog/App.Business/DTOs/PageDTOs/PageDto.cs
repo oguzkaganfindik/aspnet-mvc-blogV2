@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Business.DTOs.PageDTOs
 {
     public class PageDto
     {
-        public int Id { get; set; }
+        [Required(ErrorMessage = "{0} boş geçilemez.")]
+        [DisplayName("Sayfa Başlığı")]
+        [StringLength(50, ErrorMessage = "{0} {1} karakterden fazla olamaz!")]
+        [MinLength(3, ErrorMessage = "{0} en az {1} karakter olabilir!")]
+        public string PageTitle { get; set; }
 
-
-        [StringLength(30, ErrorMessage = "{0} en fazla {1} harf olmali")]
-        [MinLength(5, ErrorMessage = "{0} en az {1} harf olmali")]
-        public string? Title { get; set; }
-
-        [StringLength(1500, ErrorMessage = "{0} en fazla {1} harf olmali")]
-        [MinLength(3, ErrorMessage = "{0} en az {1} harf olmali")]
-        public string? Content { get; set; }
+        [Required(ErrorMessage = "{0} boş geçilemez.")]
+        [DisplayName("Sayfa İçeriği")]
+        [StringLength(1000, ErrorMessage = "{0} {1} karakterden fazla olamaz!")]
+        [MinLength(10, ErrorMessage = "{0} en az {1} karakter olabilir!")]
+        public string PageContext { get; set; }
     }
 }

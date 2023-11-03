@@ -1,39 +1,26 @@
 ﻿using App.Persistence.Data.Entity;
-using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Business.DTOs.PostDTOs
 {
     public class ViewPostDto
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "{0} boş geçilemez.")]
+        [DisplayName("Gönderi Başlığı")]
+        [StringLength(50, ErrorMessage = "{0} {1} karakterden fazla olamaz!")]
+        [MinLength(3, ErrorMessage = "{0} en az {1} karakter olabilir!")]
+        public string PostTitle { get; set; }
 
+        [Required(ErrorMessage = "{0} boş geçilemez.")]
+        [DisplayName("Gönderi İçeriği")]
+        [StringLength(1000, ErrorMessage = "{0} {1} karakterden fazla olamaz!")]
+        [MinLength(10, ErrorMessage = "{0} en az {1} karakter olabilir!")]
+        public string PostContext { get; set; }
 
-        [StringLength(25, ErrorMessage = "{0} en fazla {1} harf olmali")]
-        [MinLength(3, ErrorMessage = "{0} en az {1} harf olmali")]
-        public string? Title { get; set; }
+        public IEnumerable<CategoryPost> CategoryPosts { get; set; }
 
-
-        [StringLength(500, ErrorMessage = "{0} en fazla {1} harf olmali")]
-        [MinLength(5, ErrorMessage = "{0} en az {1} harf olmali")]
-        public string? Content { get; set; }
-
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime? PublishedAt { get; set; }
-        [Required]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime? UpdatedAt { get; set; }
-
-        // Relationship
-        public ICollection<CategoryPost>? CategoryPosts { get; set; }
-        public ICollection<PostComment>? Comments { get; set; }
-        public ICollection<PostImage>? Images { get; set; }
+        public PostImage PostImage { get; set; }
     }
 }

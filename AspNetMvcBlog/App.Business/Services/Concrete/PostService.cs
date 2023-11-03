@@ -1,131 +1,120 @@
-﻿using App.Business.Services.Abstract;
-using App.Persistence.Data.Entity;
+﻿using App.Business.DTOs.PostDTOs;
+using App.Business.Services.Abstract;
 using App.Persistence.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using App.Persistence.Data.Entity;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
-namespace App.Business.Services.Concrete
+namespace App.Business.Services
 {
     public class PostService : IPostService
-
     {
-
-        private readonly AppDbContext _context;
-
-        public PostService(AppDbContext dbContext)
+        private readonly AppDbContext _db;
+        IMapper _mapper;
+        public PostService(AppDbContext db, IMapper mapper)
         {
-            _context = dbContext;
+            _db = db;
+            _mapper = mapper;
+        }
+        public void DeleteById(int id)
+        {
+            var post = _db.Post.Find(id);
+            if (post != null) _db.Post.Remove(post);
         }
 
-        public async Task DeleteByIdAsync(int id)
+        public IEnumerable<Post> GetAll()
+        {
+            return _db.Post.Select(e => e).Include(e => e.CategoryPosts).ThenInclude(e => e.Category).ToList();
+        }
+
+        public Post GetById(int id)
         {
 
-            Post entityToDelete = await _context.Set<Post>().FindAsync(id);
-            if (entityToDelete != null)
+            return _db.Post.Where(a => a.Id == id).Include(a => a.CategoryPosts).FirstOrDefault();
+        }
+
+        public string GetCategoryName(int id)
+        {
+            int categoryId = _db.CategoryPost.FirstOrDefault(p => p.PostId == id).CategoryId;
+            return _db.Category.Find(categoryId).CategoryName;
+        }
+
+        public void Insert(Post entity)
+        {
+            entity.UserId = 1;
+            _db.Post.Add(entity);
+        }
+
+        public void Update(Post entity)
+        {
+            entity.UserId = 1;
+            if (_db.Post.Contains(entity)) _db.Post.Update(entity);
+        }
+        public void SaveChanges()
+        {
+            _db.SaveChanges();
+        }
+
+        public IEnumerable<ViewPostDto> GetAllViewPostDtos()
+        {
+            var posts = GetAll();
+
+            var postsViewDto = new List<ViewPostDto>();
+
+            foreach (var item in posts)
             {
-                _context.Set<Post>().Remove(entityToDelete);
-                await _context.SaveChangesAsync();
+                postsViewDto.Add(_mapper.Map<ViewPostDto>(item));
+            }
+
+            return postsViewDto;
+        }
+
+        public CreateOrEditPostDto PopulatePostCategories(CreateOrEditPostDto createOrEditPostDto = null)
+        {
+            var categories = _db.Category.Select(e => e).ToList();
+            var newPostDto = new CreateOrEditPostDto();
+
+            if (createOrEditPostDto == null)
+            {
+                newPostDto.Categories = categories;
+                return newPostDto;
+            }
+            else
+            {
+                createOrEditPostDto.Categories = categories;
+                return createOrEditPostDto;
+            }
+            //postDto.selectedCategoryIds.Append(0);
+
+        }
+
+        public void InsertCategoryPost(List<int> selectedCategories, Post post)
+        {
+            foreach (var categoryId in selectedCategories)
+            {
+                var categoryPost = new CategoryPost() { PostId = post.Id, CategoryId = categoryId };
+                _db.CategoryPost.Add(categoryPost);
             }
         }
-
-        public async Task DeletePostCommentByIdAsync(int id)
+        public void UpdateCategoryPost(List<int> selectedCategories, Post post)
         {
-            PostComment entityToDelete = await _context.Set<PostComment>().FindAsync(id);
-            if (entityToDelete != null)
+            var oldCategoryPost = _db.CategoryPost.Where(p => p.PostId == post.Id).ToList();
+
+            foreach (var item in oldCategoryPost)
             {
-                _context.Set<PostComment>().Remove(entityToDelete);
-                await _context.SaveChangesAsync();
+                _db.CategoryPost.Remove(item);
+                _db.SaveChanges();
+            }
+            foreach (var item in selectedCategories)
+            {
+                var newCategoryPost = new CategoryPost { CategoryId = item, PostId = post.Id };
+                _db.CategoryPost.Add(newCategoryPost);
+                _db.SaveChanges();
             }
         }
-
-        public async Task DeletePostImageByIdAsync(int id)
+        public List<int> GetSelectedCategoryIds(int postId)
         {
-            PostImage entityToDelete = await _context.Set<PostImage>().FindAsync(id);
-            if (entityToDelete != null)
-            {
-                _context.Set<PostImage>().Remove(entityToDelete);
-                await _context.SaveChangesAsync();
-            }
-        }
-
-        public async Task<IEnumerable<Post>> GetAllAsync()
-        {
-
-            return await _context.Set<Post>().ToListAsync();
-        }
-
-        public async Task<Post> GetByIdAsync(int id)
-        {
-
-            return await _context.Set<Post>().FindAsync(id);
-        }
-
-        public async Task<Post> GetByIdAsyncAllComments(int id)
-        {
-            return await _context.Set<Post>()
-          .Include(p => p.Comments)
-          .Where(p => p.Id == id)
-          .FirstOrDefaultAsync();
-        }
-
-        public async Task<Post> GetByIdAsyncWithImages(int id)
-        {
-            return await _context.Set<Post>()
-                .Include(p => p.Images)
-                .Where(p => p.Id == id)
-                .FirstOrDefaultAsync();
-        }
-
-        public async Task<PostComment> GetPostCommentByIdAsync(int postId)
-        {
-            return await _context.Set<PostComment>().FindAsync(postId);
-        }
-
-        public async Task<PostImage> GetPostImageByIdAsync(int postId)
-        {
-            return await _context.Set<PostImage>().FindAsync(postId);
-        }
-
-        public async Task InsertAsync(Post post)
-        {
-
-            await _context.Set<Post>().AddAsync(post);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task InsertPostCommentAsync(PostComment postComment)
-        {
-            await _context.Set<PostComment>().AddAsync(postComment);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task InsertPostImageAsync(PostImage postImage)
-        {
-            await _context.Set<PostImage>().AddAsync(postImage);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task UpdateAsync(Post post)
-        {
-
-            _context.Update(post);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task UpdatePostCommentAsync(PostComment postComment)
-        {
-            _context.Update(postComment);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task UpdatePostImageAsync(PostImage postImage)
-        {
-            _context.Update(postImage);
-            await _context.SaveChangesAsync();
+            return _db.CategoryPost.Where(a => a.PostId == postId).Select(a => a.CategoryId).ToList();
         }
     }
 }

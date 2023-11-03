@@ -1,54 +1,47 @@
 ﻿using App.Business.Services.Abstract;
-using App.Persistence.Data.Entity;
 using App.Persistence.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using App.Persistence.Data.Entity;
 
-namespace App.Business.Services.Concrete
+namespace App.Business.Services
 {
     public class UserService : IUserService
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContext _db;
 
-        public UserService(AppDbContext dbContext)
+        public UserService(AppDbContext db)
         {
-            _context = dbContext;
+            _db = db;
+
+        }
+        public void DeleteById(int id)
+        {
+            var user = _db.User.Find(id);
+            if (user != null) _db.User.Remove(user);
         }
 
-        public async Task DeleteByIdAsync(int id)
+        public IEnumerable<User> GetAll()
         {
-            User entityToDelete = await _context.Set<User>().FindAsync(id);
-            if (entityToDelete != null)
-            {
-                _context.Set<User>().Remove(entityToDelete);
-                await _context.SaveChangesAsync();
-            }
+            return _db.User.Select(e => e);
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync()
+        public User GetById(int id)
         {
-            return await _context.Set<User>().ToListAsync();
+            return _db.User.Find(id);
         }
 
-        public async Task<User> GetByIdAsync(int id)
+        public void Insert(User entity)
         {
-            return await _context.Set<User>().FindAsync(id);
+            _db.User.Add(entity);
         }
 
-        public async Task InsertAsync(User user)
+        public void SaveChanges()
         {
-            await _context.Set<User>().AddAsync(user);
-            await _context.SaveChangesAsync();
+            _db.SaveChanges();
         }
 
-        public async Task UpdateAsync(User user)
+        public void Update(User entity)
         {
-            _context.Update(user);
-            await _context.SaveChangesAsync();
+            if (_db.User.Contains(entity)) _db.User.Update(entity);
         }
     }
 }

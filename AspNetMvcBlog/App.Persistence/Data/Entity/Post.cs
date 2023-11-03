@@ -25,7 +25,10 @@ namespace App.Persistence.Data.Entity
         public User User { get; set; }
 
         public ICollection<CategoryPost> CategoryPosts { get; set; }
+        public PostImage PostImage { get; set; }
         public ICollection<PostComment> Comments { get; set; }
         public ICollection<PostImage> Images { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public DateTime PublishedAt { get; set; }
     }
 }

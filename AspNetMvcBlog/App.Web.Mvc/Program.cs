@@ -1,6 +1,6 @@
-using App.Business.AutoMapper;
+using App.Business;
+using App.Business.Services;
 using App.Business.Services.Abstract;
-using App.Business.Services.Concrete;
 using App.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -78,6 +78,15 @@ app.MapControllerRoute(
     name: "BlogDetail",
     pattern: "BlogDetail/{controller=Blog}/{action=Detail}/{id?}");
 
+//app.MapControllerRoute(
+//    name: "admin",
+//    pattern: "admin/{controller=Home}/{action=Index}/{id?}",
+//    defaults: new { area = "Admin" }
+//);
+
+app.MapControllerRoute(
+    name: "MyArea",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 
 app.Run();
