@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5>Ayar Değiştir</h5>
-                    @*<div asp-validation-summary="All"></div>*@
+                    <div asp-validation-summary="All"></div>
                 </div>
                 <div class="card-body">
                     <form asp-controller="Setting" asp-action="Edit" method="post" class="d-flex align-items-center">
@@ -22,7 +22,7 @@
                             </div>
                             <div class="row mb-4">
                                 <div class="col">
-@*                                    <input type="text" asp-for="UserId" hidden />*@
+                                    <input type="text" asp-for="Id" hidden /> @*burası değiştirildi*@
                                 </div>
                             </div>
                             <div class="row mb-2">

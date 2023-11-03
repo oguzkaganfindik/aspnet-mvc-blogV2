@@ -58,7 +58,7 @@ namespace App.Web.Mvc.Controllers
 
                 appDbContext.Add(dataModel);
                 appDbContext.SaveChanges();
-                ViewBag.RegisterationMessage = "Kayit basari ile gerceklestirildi"; //bu konuda bir şey düşünün..
+                ViewBag.RegisterationMessage = "Kayit basari ile gerceklestirildi"; 
 
                 return RedirectToAction(nameof(Index), "Home", new { area = "" });
             }
