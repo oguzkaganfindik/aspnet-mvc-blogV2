@@ -1,6 +1,6 @@
-﻿using App.Web.Mvc.Data;
-using App.Web.Mvc.Data.Entity;
-using App.Web.Mvc.DTOs;
+﻿using App.Persistence.Data;
+using App.Persistence.Data.Entity;
+using App.Persistence.DTOs;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -135,4 +135,3 @@ namespace App.Web.Mvc.Controllers
 
     }
 }
-

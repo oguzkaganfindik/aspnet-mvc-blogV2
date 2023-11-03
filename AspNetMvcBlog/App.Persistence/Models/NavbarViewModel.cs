@@ -1,6 +1,6 @@
-﻿using App.Web.Mvc.Data.Entity;
+﻿using App.Persistence.Data.Entity;
 
-namespace App.Web.Mvc.Models
+namespace App.Persistence.Models
 {
     public class NavbarViewModel
     {

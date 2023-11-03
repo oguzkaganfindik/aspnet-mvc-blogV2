@@ -1,9 +1,7 @@
-﻿using App.Web.Mvc.Data.Entity;
+﻿using App.Persistence.Data.Entity;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Reflection.Emit;
 
-namespace App.Web.Mvc.Data
+namespace App.Persistence.Data
 {
     public class AppDbContext : DbContext
     {

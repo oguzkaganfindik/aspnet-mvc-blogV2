@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace App.Web.Mvc.Data.Entity
+namespace App.Persistence.Data.Entity
 {
     public class Post
     {
@@ -21,8 +21,11 @@ namespace App.Web.Mvc.Data.Entity
         [StringLength(1000, ErrorMessage = "{0} {1} karakterden fazla olamaz!")]
         [MinLength(10, ErrorMessage = "{0} en az {1} karakter olabilir!")]
         public string PostContext { get; set; }
-        public List<CategoryPost> CategoryPosts { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
+
+        public ICollection<CategoryPost> CategoryPosts { get; set; }
+        public ICollection<PostComment> Comments { get; set; }
+        public ICollection<PostImage> Images { get; set; }
     }
 }

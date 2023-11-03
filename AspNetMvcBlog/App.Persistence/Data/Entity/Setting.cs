@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace App.Web.Mvc.Data.Entity
+namespace App.Persistence.Data.Entity
 {
     public class Setting
     {

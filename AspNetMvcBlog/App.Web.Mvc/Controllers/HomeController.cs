@@ -1,4 +1,4 @@
-﻿using App.Web.Mvc.Models;
+﻿using App.Persistence.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

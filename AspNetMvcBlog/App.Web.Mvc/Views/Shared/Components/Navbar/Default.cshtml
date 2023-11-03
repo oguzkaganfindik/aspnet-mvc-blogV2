@@ -1,6 +1,6 @@
-﻿@model App.Web.Mvc.Models.NavbarViewModel
+﻿@model App.Persistence.Models.NavbarViewModel
 @using System.Text.Json;
-@using App.Web.Mvc.Data.Entity;
+@using App.Persistence.Data.Entity;
 @inject IHttpContextAccessor _currentPageInfo
 @{
   var isLoggedIn = _currentPageInfo.HttpContext.Session.GetInt32("isLoggedIn");

@@ -4,10 +4,10 @@
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace App.Web.Mvc.Migrations
+namespace App.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class First : Migration
+    public partial class sjkhdfsjs : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

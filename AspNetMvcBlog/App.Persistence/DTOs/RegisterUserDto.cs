@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace App.Web.Mvc.DTOs
+namespace App.Persistence.DTOs
 {
     public class RegisterUserDto
     {
