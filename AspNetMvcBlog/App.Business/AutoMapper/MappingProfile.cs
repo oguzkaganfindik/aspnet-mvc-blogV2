@@ -1,42 +1,43 @@
 ﻿using App.Business.DTOs.CategoryDTOs;
 using App.Business.DTOs.PageDTOs;
 using App.Business.DTOs.PostDTOs;
-using App.Business.DTOs.SettingDTOs;
+using App.Business.DTOs.Setting;
 using App.Business.DTOs.UserDTOs;
 using App.Persistence.Data.Entity;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace App.Business.AutoMapper
+namespace App.Business
 {
     public class MappingProfile : Profile
     {
         public MappingProfile()
         {
-            CreateMap<Category, CategoryDto>().ReverseMap();
-            CreateMap<Category, ViewCategoryDto>().ReverseMap();
-            CreateMap<Category, CreateOrEditCategoryDto>().ReverseMap();
+            //Category
+            CreateMap<CategoryDto, Category>().ReverseMap();
+            CreateMap<ViewCategoryDto, Category>().ReverseMap();
+            CreateMap<CreateOrEditCategoryDto, Category>().ReverseMap();
+            //Post
+            CreateMap<PostDto, Post>().ReverseMap();
+            CreateMap<ViewPostDto, Post>().ReverseMap();
+            CreateMap<CreateOrEditPostDto, Post>().ReverseMap();
 
-            CreateMap<Post, CreateOrEditPostDto>().ReverseMap();
-            CreateMap<Post, PostDto>().ReverseMap();
-            CreateMap<Post, ViewPostDto>().ReverseMap();
+            //Page
+            CreateMap<PageDto, Page>().ReverseMap();
+            CreateMap<ViewPageDto, Page>().ReverseMap();
+            CreateMap<CreateOrEditPageDto, Page>().ReverseMap();
 
-            CreateMap<Page, CreateOrEditPageDto>().ReverseMap();
-            CreateMap<Page, PageDto>().ReverseMap();
-            CreateMap<Page, ViewPageDto>().ReverseMap();
+            //User
+            CreateMap<UserDto, User>().ReverseMap();
+            CreateMap<ViewUserDto, User>().ReverseMap();
+            CreateMap<CreateOrEditUserDto, User>().ReverseMap();
 
+            //Setting
+            CreateMap<SettingDto, Setting>().ReverseMap();
+            CreateMap<ViewSettingDto, Setting>().ReverseMap();
+            CreateMap<CreateOrEditSettingDto, Setting>().ReverseMap();
 
-            CreateMap<User, CreateOrEditUserDto>().ReverseMap();
-            CreateMap<User, UserDto>().ReverseMap();
-            CreateMap<User, ViewUserDto>().ReverseMap();
-
-            CreateMap<Setting, CreateOrEditSettingDto>().ReverseMap();
-            CreateMap<Setting, SettingDto>().ReverseMap();
-            CreateMap<Setting, ViewSettingDto>().ReverseMap();
+            //postComment
+            CreateMap<DTOs.PostComment.PostCommentCreateOrEditDto, PostComment>().ReverseMap();
         }
     }
 }

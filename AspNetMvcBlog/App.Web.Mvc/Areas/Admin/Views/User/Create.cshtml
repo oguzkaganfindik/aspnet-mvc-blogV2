@@ -1,0 +1,56 @@
+﻿@model App.Persistence.Data.Entity.User
+
+<div class="container">
+
+  <div class="row mb-2">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h5>Kullanıcı Oluştur</h5>
+          @*<div asp-validation-summary="All"></div>*@
+        </div>
+        <div class="card-body">
+          <form asp-controller="User" asp-action="Create" method="post" class="d-flex align-items-center">
+            <div class="container">
+
+              <div class="row mb-4">
+                <div class="col">
+                  <label asp-for="UserName" class="mb-2"></label>
+                  <input type="text" asp-for="UserName" class="form-control" placeholder="Ad" />
+                  <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col">
+                  <label asp-for="UserSurname" class="mb-2"></label>
+                  <input type="text" asp-for="UserSurname" class="form-control" placeholder="Soyad" />
+                  <span asp-validation-for="UserSurname" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col">
+                  <label asp-for="UserEmail" class="mb-2"></label>
+                  <input type="text" asp-for="UserEmail" class="form-control" placeholder="E-mail" />
+                  <span asp-validation-for="UserEmail" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col">
+                  <label asp-for="UserPassword" class="mb-2"></label>
+                  <input type="text" asp-for="UserPassword" class="form-control" placeholder="Şifre" />
+                  <span asp-validation-for="UserPassword" class="text-danger"></span>
+                </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col">
+                  <button type="submit" class="btn btn-warning" style="width:150px">Oluştur</button>
+                  <a asp-controller="User" asp-action="Index" class="btn btn-primary" style="width:150px">Listeye Dön</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

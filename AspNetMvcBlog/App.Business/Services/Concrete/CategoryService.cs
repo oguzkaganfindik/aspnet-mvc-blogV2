@@ -1,54 +1,58 @@
-﻿using App.Business.Services.Abstract;
-using App.Persistence.Data.Entity;
+﻿﻿using App.Business.Services.Abstract;
 using App.Persistence.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using App.Persistence.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace App.Business.Services.Concrete
+namespace App.Business.Services
 {
     public class CategoryService : ICategoryService
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContext _db;
 
-        public CategoryService(AppDbContext dbContext)
+        public CategoryService(AppDbContext db)
         {
-            _context = dbContext;
+            _db = db;
+
+        }
+        public void DeleteById(int id)
+        {
+            var category = _db.Category.Find(id);
+            if (category != null) _db.Category.Remove(category);
         }
 
-        public async Task DeleteByIdAsync(int id)
+        public IEnumerable<Category> GetAll()
         {
-            Category entityToDelete = await _context.Set<Category>().FindAsync(id);
-            if (entityToDelete != null)
-            {
-                _context.Set<Category>().Remove(entityToDelete);
-                await _context.SaveChangesAsync();
-            }
+            return _db.Category.Select(e => e);
         }
 
-        public async Task<IEnumerable<Category>> GetAllAsync()
+        public Category GetById(int id)
         {
-            return await _context.Set<Category>().ToListAsync();
+            return _db.Category.Find(id);
         }
 
-        public async Task<Category> GetByIdAsync(int id)
+        public void Insert(Category entity)
         {
-            return await _context.Set<Category>().FindAsync(id);
+            _db.Category.Add(entity);
         }
 
-        public async Task InsertAsync(Category category)
+        public void SaveChanges()
         {
-            await _context.Set<Category>().AddAsync(category);
-            await _context.SaveChangesAsync();
+            _db.SaveChanges();
         }
 
-        public async Task UpdateAsync(Category category)
+        public void Update(Category entity)
         {
-            _context.Update(category);
-            await _context.SaveChangesAsync();
+            if (_db.Category.Contains(entity)) _db.Category.Update(entity);
+        }
+
+        public List<Post> GetPostsBySearch(string searchString)
+        {
+            return _db.Post.Where(p => p.PostContext.Contains(searchString) || p.PostTitle.Contains(searchString)).Include(p => p.PostImage).Include(p => p.CategoryPosts).ThenInclude(p => p.Category).ToList();
+        }
+
+        public List<CategoryPost> GetPostsByCategoryIndex(int Id)
+        {
+            return _db.CategoryPost.Where(p => p.CategoryId == Id).Include(c => c.Post).ThenInclude(c => c.PostImage).Include(c => c.Category).ToList();
         }
     }
 }

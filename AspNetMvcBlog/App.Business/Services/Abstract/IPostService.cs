@@ -1,42 +1,21 @@
-﻿using App.Persistence.Data.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using App.Business.DTOs.PostDTOs;
+using App.Persistence.Data.Entity;
 
 namespace App.Business.Services.Abstract
 {
     public interface IPostService
     {
-        Task DeleteByIdAsync(int id);
-        Task<IEnumerable<Post>> GetAllAsync();
-        Task<Post> GetByIdAsync(int id);
-
-        Task<Post> GetByIdAsyncWithImages(int id);
-
-
-        Task InsertAsync(Post post);
-        Task UpdateAsync(Post post);
-
-        Task<PostImage> GetPostImageByIdAsync(int postId);
-
-        Task InsertPostImageAsync(PostImage postImage);
-
-        Task UpdatePostImageAsync(PostImage postImage);
-
-        Task DeletePostImageByIdAsync(int id);
-
-        Task<Post> GetByIdAsyncAllComments(int id);
-
-        Task<PostComment> GetPostCommentByIdAsync(int postId);
-
-        Task InsertPostCommentAsync(PostComment postComment);
-
-        Task UpdatePostCommentAsync(PostComment postComment);
-
-        Task DeletePostCommentByIdAsync(int id);
-
-
+        Post GetById(int id);
+        IEnumerable<Post> GetAll();
+        void Insert(Post entity);
+        void Update(Post entity);
+        void DeleteById(int id);
+        string GetCategoryName(int id);
+        void SaveChanges();
+        IEnumerable<ViewPostDto> GetAllViewPostDtos();
+        CreateOrEditPostDto PopulatePostCategories(CreateOrEditPostDto createOrEditPostDto);
+        void InsertCategoryPost(List<int> selectedCategories, Post post);
+        void UpdateCategoryPost(List<int> selectedCategories, Post post);
+        List<int> GetSelectedCategoryIds(int postId);
     }
 }

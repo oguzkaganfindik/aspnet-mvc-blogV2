@@ -1,54 +1,60 @@
-﻿using App.Business.Services.Abstract;
-using App.Persistence.Data.Entity;
+﻿using App.Business.DTOs.Setting;
+using App.Business.Services.Abstract;
 using App.Persistence.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using App.Persistence.Data.Entity;
 
-namespace App.Business.Services.Concrete
+namespace App.Business.Services
 {
     public class SettingService : ISettingService
     {
+        private readonly AppDbContext _db;
 
-        private readonly AppDbContext _context;
-
-        public SettingService(AppDbContext dbContext)
+        public SettingService(AppDbContext db)
         {
-            _context = dbContext;
+            _db = db;
         }
-        public async Task DeleteByIdAsync(int id)
+        public void DeleteById(int id)
         {
-            Setting entityToDelete = await _context.Set<Setting>().FindAsync(id);
-            if (entityToDelete != null)
+            var setting = _db.Setting.Find(id);
+            if (setting != null) _db.Setting.Remove(setting);
+        }
+
+        public IEnumerable<Setting> GetAll()
+        {
+            return _db.Setting.Select(e => e);
+        }
+
+        public IEnumerable<ViewSettingDto> GetAllByUserNames()
+        {
+            var viewSettingDtos = new List<ViewSettingDto>();
+
+            var settings = _db.Setting.Select(e => e).ToList();
+
+            foreach (var item in settings)
             {
-                _context.Set<Setting>().Remove(entityToDelete);
-                await _context.SaveChangesAsync();
+                viewSettingDtos.Add(new ViewSettingDto { Id = item.Id, DarkMode = item.DarkMode, UserName = _db.User.FirstOrDefault(a => a.Id == item.Id).UserName });
             }
+            return viewSettingDtos;
         }
 
-        public async Task<IEnumerable<Setting>> GetAllAsync()
+        public Setting GetById(int id)
         {
-            return await _context.Set<Setting>().ToListAsync();
+            return _db.Setting.FirstOrDefault(a => a.Id == id);
         }
 
-        public async Task<Setting> GetByIdAsync(int id)
+        public void Insert(Setting entity)
         {
-            return await _context.Set<Setting>().FindAsync(id);
+            _db.Setting.Add(entity);
         }
 
-        public async Task InsertAsync(Setting setting)
+        public void SaveChanges()
         {
-            await _context.Set<Setting>().AddAsync(setting);
-            await _context.SaveChangesAsync();
+            _db.SaveChanges();
         }
 
-        public async Task UpdateAsync(Setting setting)
+        public void Update(Setting entity)
         {
-            _context.Update(setting);
-            await _context.SaveChangesAsync();
+            if (_db.Setting.Contains(entity)) _db.Setting.Update(entity);
         }
     }
 }
