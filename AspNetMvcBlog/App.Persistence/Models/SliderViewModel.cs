@@ -1,4 +1,4 @@
-﻿namespace App.Web.Mvc.Models
+﻿namespace App.Persistence.Models
 {
     public class SliderViewModel
     {

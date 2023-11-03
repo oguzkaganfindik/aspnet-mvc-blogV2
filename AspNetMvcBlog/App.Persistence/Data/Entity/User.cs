@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace App.Web.Mvc.Data.Entity
+namespace App.Persistence.Data.Entity
 {
     public class User
     {

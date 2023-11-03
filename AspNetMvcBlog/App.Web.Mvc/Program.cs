@@ -1,4 +1,6 @@
-using App.Web.Mvc.Data;
+using App.Business.Services.Abstract;
+using App.Business.Services.Concrete;
+using App.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,11 +14,23 @@ builder.Services.AddSession(options =>
 {
     options.Cookie.Name = ".Genel.Session";
     options.IdleTimeout = TimeSpan.FromSeconds(120);
-    options.Cookie.HttpOnly = true; 
-    options.Cookie.IsEssential = true; 
-                                       
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+
 }
 );
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<IPostService, PostService>();
+builder.Services.AddScoped<IPageService, PageService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ISettingService, SettingService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+
+
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpContextAccessor();
 
