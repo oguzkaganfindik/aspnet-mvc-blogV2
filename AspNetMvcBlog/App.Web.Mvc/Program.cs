@@ -1,3 +1,4 @@
+using App.Business.AutoMapper;
 using App.Business.Services.Abstract;
 using App.Business.Services.Concrete;
 using App.Persistence.Data;
@@ -28,7 +29,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ISettingService, SettingService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
-
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddControllersWithViews();
 
